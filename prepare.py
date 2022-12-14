@@ -12,5 +12,20 @@ def split_data(df,col):
 
 
 
-                                       
     return train, validate, test
+
+def prep_tidy(df):
+    '''
+        take in presupposed version of tidy bases on acquire.py and make appropriate 
+        changes.
+    
+    positional arg : uncleaned tidy
+    return: cleaned tidy
+    '''
+   
+   
+    df = df.rename(columns={'Unnamed: 0':'name'})
+    
+    
+    return df
+    

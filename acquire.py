@@ -16,7 +16,7 @@ def get_titanic_data(get_connection):
         df = pd.read_sql('SELECT * FROM passengers', get_connection('titanic_db'))
 
     # Write that dataframe to disk for later. Called "caching" the data for later.
-        df.to_csv(filename)
+        df.to_csv(filename,index = False)
 
     # Return the dataframe to the calling code
         return df  
@@ -66,4 +66,40 @@ def get_telco_data(get_connection):
         df.to_csv(filename)
 
     # Return the dataframe to the calling code
-        return df  
+        return df 
+    
+def get_tidy_attendance(get_connection):
+    filename = "tidy_attendance.csv"
+    
+    if os.path.isfile(filename):
+        return pd.read_csv(filename)
+    
+    else :
+    # read the SQL query into a dataframe
+        df = pd.read_sql('SELECT * FROM attendance',get_connection("tidy_data"),
+                      index_col = None  )
+
+    # Write that dataframe to disk for later. Called "caching" the data for later.
+        df.to_csv(filename,index = False)
+
+    # Return the dataframe to the calling code
+        return df 
+    
+def get_tidy_cake(get_connection):
+    filename = "tidy_cake.csv"
+    
+    if os.path.isfile(filename):
+        return pd.read_csv(filename)
+    
+    else :
+    # read the SQL query into a dataframe
+        df = pd.read_sql('SELECT * FROM cake_recipes',get_connection("tidy_data"),
+                      index_col = None  )
+
+    # Write that dataframe to disk for later. Called "caching" the data for later.
+        df.to_csv(filename,index = False)
+
+    # Return the dataframe to the calling code
+        return df 
+
+
